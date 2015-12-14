@@ -1,11 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var model = require('../models/Places');
-var places = model.Places;
-/* GET users listing. */
+
+// TODO: refactor this shit.
+var Sequelize = require("sequelize");
+var sequelize = new Sequelize('travelguides', 'root', '12345678', {
+  host: 'localhost',
+  dialect: 'mysql',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  },
+});
+
+var placesService = require("../models/Places")(sequelize);
+sequelize.sync()
 
 router.get('/', function(req, res) {
-  return req.json({ result: "false"})
+  placesService.findOne().then(function (user) {
+    res.json({ result: user.name})
+})
+    // res.json({ result: 'user.name'})
 });
 
 module.exports = router;

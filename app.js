@@ -7,13 +7,11 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var places = require('./routes/places');
-var Sequelize = require("sequelize");
 
 var app = express();
 
-var sequelize = new Sequelize("postgres://postgres:ubuntu@localhost:5432/travelguides");
-var placesService = require("./models/Places")(sequelize);
-sequelize.sync()
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -7,12 +7,10 @@ module.exports = function (sequelize) {
         dailySpend: Sequelize.INTEGER,
         distance: Sequelize.INTEGER,
         placeType: Sequelize.STRING,
-        currency: Sequelize.INTEGER,
+        currency: Sequelize.STRING,
         distance: Sequelize.INTEGER,
         from: Sequelize.STRING,
         parent: Sequelize.STRING
     });
-    return {
-        Places: Places
-    };
+    return Places
 };
